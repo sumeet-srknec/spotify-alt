@@ -1,0 +1,46 @@
+name: backend service ci
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "backend/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/backend-ci.yaml"
+      - "pom.xml"
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "backend/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/backend-ci.yaml"
+      - "pom.xml"
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    env:
+      FROM_ORIGINAL_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: ./.github/workflows/actions
+      - name: Run Maven Build Command
+        run: mvn clean install -DskipTests
+        working-directory: backend
+      - name: OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        env:
+          JAVA_HOME: /opt/jdk
+        with:
+          project: 'cool-tasks'
+          path: '.'
+          format: 'HTML'
+      - name: Upload OWASP Dependency Check results
+        uses: actions/upload-artifact@main
+        with:
+          name: OWASP Dependency Check Report
+          path: ${{github.workspace}}/reports
+      

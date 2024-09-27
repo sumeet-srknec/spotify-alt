@@ -1,0 +1,40 @@
+name: frontend service ci
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/frontend-ci.yaml"
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/actions/action.yaml"
+      - ".github/workflows/frontend-ci.yaml"
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    env:
+      FROM_ORIGINAL_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+      - run: npx prettier --check .
+        working-directory: frontend
+      
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test -- --watchAll=false --verbose
+        working-directory: frontend
