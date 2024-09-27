@@ -5,4 +5,4 @@ Inspiration is Spotify for Windows (64 bit) - 1.2.47.364.gf06e5cee
 ## Screens
 
 ### Base layout
-![Base layout](relative%20docs/spotify-alt-base-layout.PNG "Base Layout")
+![Base layout](docs/images/spotify-alt-base-layout.PNG "Base Layout")
