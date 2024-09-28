@@ -6,3 +6,6 @@ Inspiration is Spotify for Windows (64 bit) - 1.2.47.364.gf06e5cee
 
 ### Base layout
 ![Base layout](docs/images/spotify-alt-base-layout.PNG "Base Layout")
+
+### Control Panel
+![Base layout](docs/images/control-panel.PNG "Control Panel")
