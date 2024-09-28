@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import SpotButton from './SpotButton'
-import { HiArrowRight, HiBars3, HiPlus } from 'react-icons/hi2'
 import classNames from 'classnames'
+import React, { useState } from 'react'
+import { HiArrowRight, HiPlus } from 'react-icons/hi2'
+import { VscLibrary } from 'react-icons/vsc'
+import SpotButton from './SpotButton'
 
 function Navigation() {
     const [navClosed, setNavClosed] = useState(false)
@@ -16,7 +17,7 @@ function Navigation() {
             <div className="flex flex-row gap-0 justify-between">
                 <div className="flex flex-row items-center gap-2">
                     <SpotButton onClick={(e) => setNavClosed(!navClosed)}>
-                        <HiBars3 aria-hidden="true" className="h-6 w-6" />
+                        <VscLibrary aria-hidden="true" className="h-6 w-6" />
                     </SpotButton>
                     {navClosed === false && (
                         <span

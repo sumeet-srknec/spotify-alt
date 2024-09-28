@@ -9,7 +9,7 @@ function Header() {
     const dispatch = useDispatch()
 
     return (
-        <Disclosure as="nav" className="bg-gray-900">
+        <Disclosure as="nav" className="">
             <div className="max-w-full px-2 sm:px-2 lg:px-3">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="flex flex-1 flex-row items-center justify-between">
