@@ -16,7 +16,7 @@ function ControlPanel() {
     const dispatch = useDispatch()
 
     return (
-        <div className="h-20 p-2 flex flex-row justify-between items-center">
+        <div className="h-24 p-2 flex flex-row justify-between items-center">
             <div className="flex flex-row gap-4 items-center justify-between">
                 <div className="relative group bg-gray-50">
                     <HiBars2 className="h-12 w-12 border rounded cursor-pointer text-black" />
@@ -31,7 +31,7 @@ function ControlPanel() {
                 </div>
                 <HiCheckCircle className="h-6 w-6 text-green-500 cursor-pointer" />
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center justify-between p-2">
                 <div className="flex flex-row gap-6 items-center">
                     <span>
                         <SpotButton>
@@ -55,16 +55,16 @@ function ControlPanel() {
                     </span>
                     <span>
                         <SpotButton>
-                            <SlLoop className="h-4 w-4 cursor-pointer text-gray-300" />
+                            <SlLoop className="h-4 w-4 cursor-pointer text-green-600" />
                         </SpotButton>
                     </span>
                 </div>
-                <div className="flex flex-row gap-4 w-[40rem] items-center relative group">
+                <div className="flex flex-row gap-4  items-center justify-between">
                     <span className="text-xs">0:00</span>
-                    <div className="flex flex-row flex-1">
-                        <div className="rounded-l-lg w-[90%] bg-white text-xs h-1 group-hover:bg-green-500"></div>
-                        <BsDot className="absolute top-1/2 -translate-y-1/2 left-[80%] hidden group-hover:block h-12 w-12" />
-                        <div className="rounded-r-lg w-[5%] bg-gray-500 text-xs h-1"></div>
+                    <div className=" flex flex-row flex-1 h-1 relative group w-[36rem]">
+                        <div className="rounded-l-lg w-[80%] bg-white text-xs group-hover:bg-green-600"></div>
+                        <div className="rounded-r-lg w-[20%] bg-gray-500 text-xs"></div>
+                        <BsDot className="absolute top-1/2 -translate-y-1/2 left-[75%] hidden group-hover:block h-12 w-12 text-white" />
                     </div>
                     <span className="text-xs">3:52</span>
                 </div>
