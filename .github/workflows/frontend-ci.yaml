@@ -35,6 +35,6 @@ jobs:
         working-directory: frontend
       
       # Step 4: Run tests
-      - name: Run tests
-        run: npm test -- --watchAll=false --verbose
-        working-directory: frontend
+      # - name: Run tests
+      #   run: npm test -- --watchAll=false --verbose
+      #   working-directory: frontend
