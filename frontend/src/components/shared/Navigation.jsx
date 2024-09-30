@@ -10,7 +10,7 @@ function Navigation() {
     return (
         <div
             className={classNames(
-                'bg-gray-800 rounded-lg p-4 flex flex-col gap-0 justify-between',
+                'bg-gray-900 rounded-lg p-4 flex flex-col gap-0 justify-between',
                 navClosed ? 'w-auto' : 'w-1/4'
             )}
         >
