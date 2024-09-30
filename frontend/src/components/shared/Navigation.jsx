@@ -2,7 +2,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import classNames from 'classnames'
 import React, { useState } from 'react'
 import { AiOutlineBars } from 'react-icons/ai'
-import { FaBars } from 'react-icons/fa6'
+import { FaBars, FaPlay } from 'react-icons/fa6'
 import { HiCheck, HiSearch } from 'react-icons/hi'
 import { HiArrowRight, HiBars2, HiMiniBars3, HiPlus } from 'react-icons/hi2'
 import { IoGridOutline } from 'react-icons/io5'
@@ -244,7 +244,7 @@ function Navigation() {
                         }
                     ].map((item) => {
                         return (
-                            <div className="flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2">
+                            <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
                                 {item.logo}
                                 <div className="flex flex-col">
                                     <span className="text-sm font-bold">{item.title}</span>
@@ -259,6 +259,7 @@ function Navigation() {
                                         <span>{`${item.count} songs`}</span>
                                     </div>
                                 </div>
+                                <FaPlay className="hidden group-hover:block absolute translate-y-0.4 translate-x-5" />
                             </div>
                         )
                     })}
