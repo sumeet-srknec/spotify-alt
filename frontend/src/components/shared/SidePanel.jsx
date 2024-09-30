@@ -11,7 +11,7 @@ function SidePanel() {
     return closed === true ? (
         <></>
     ) : (
-        <div className="bg-gray-800 rounded-lg w-1/5 p-4">
+        <div className="bg-gray-900 rounded-lg w-1/5 p-4">
             <div className="flex flex-row items-center justify-between">
                 <span
                     aria-hidden="true"
