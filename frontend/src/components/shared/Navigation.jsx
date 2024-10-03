@@ -1,8 +1,7 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import classNames from 'classnames'
 import React, { useState } from 'react'
-import { AiOutlineBars } from 'react-icons/ai'
-import { FaBars, FaPlay } from 'react-icons/fa6'
+import { FaBars, FaListUl, FaPlay } from 'react-icons/fa6'
 import { HiCheck, HiSearch } from 'react-icons/hi'
 import { HiArrowRight, HiBars2, HiMiniBars3, HiPlus } from 'react-icons/hi2'
 import { IoGridOutline } from 'react-icons/io5'
@@ -16,7 +15,7 @@ function Navigation() {
     const [sortBy, setSortBy] = useState('Recents')
     const [showSearch, setShowSearch] = useState('Recents')
     const [viewAs, setViewAs] = useState({
-        logo: <AiOutlineBars className="h-3 w-3 font-bold" />,
+        logo: <FaListUl className="h-3 w-3 font-bold" />,
         label: 'List',
         key: 'List'
     })
@@ -90,7 +89,7 @@ function Navigation() {
                     </div>
                     <Popover className="group">
                         <PopoverButton className="flex flex-row items-center justify-between gap-1 text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
-                            <span>{sortBy}</span>
+                            <span className="mb-1">{sortBy}</span>
                             <span>{viewAs?.logo}</span>
                         </PopoverButton>
                         <PopoverPanel
@@ -130,7 +129,7 @@ function Navigation() {
                                         key: 'Compact'
                                     },
                                     {
-                                        logo: <AiOutlineBars className="h-3 w-3 font-bold" />,
+                                        logo: <FaListUl className="h-3 w-3 font-bold" />,
                                         label: 'List',
                                         key: 'List'
                                     },
