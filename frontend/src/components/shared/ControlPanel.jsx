@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 import { AiOutlinePlaySquare } from 'react-icons/ai'
 import { BsDot } from 'react-icons/bs'
@@ -8,12 +9,21 @@ import { HiCheckCircle, HiChevronUp } from 'react-icons/hi'
 import { HiBars2, HiOutlineQueueList } from 'react-icons/hi2'
 import { SlLoop } from 'react-icons/sl'
 import { TbDevices2, TbMicrophone2 } from 'react-icons/tb'
-import { useDispatch } from 'react-redux'
-import { openPanel } from './slices/sidepanelSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { openPanel, setClosed } from './slices/sidepanelSlice'
 import SpotButton from './SpotButton'
 
 function ControlPanel() {
     const dispatch = useDispatch()
+    const { closed } = useSelector((state) => state.sidepanel)
+
+    const handleSongClicked = () => {
+        if (closed === false) {
+            dispatch(setClosed(true))
+        } else {
+            dispatch(openPanel('Liked Songs'))
+        }
+    }
 
     return (
         <div className="h-24 p-2 flex flex-row justify-between items-center">
@@ -21,8 +31,11 @@ function ControlPanel() {
                 <div className="relative group bg-gray-50">
                     <HiBars2 className="h-12 w-12 border rounded cursor-pointer text-black" />
                     <HiChevronUp
-                        onClick={(e) => dispatch(openPanel('Liked Songs'))}
-                        className="absolute hidden left-[50%] translate-x-1/6 -translate-y-1/3 top-[20%] group-hover:block h-6 w-6 group-hover:ring-0.5 group-hover:ring-offset-gray-950 rounded-full bg-gray-950"
+                        onClick={(e) => handleSongClicked()}
+                        className={classNames(
+                            'absolute hidden left-[50%] translate-x-1/6 -translate-y-1/3 top-[20%] group-hover:block h-6 w-6 group-hover:ring-0.5 group-hover:ring-offset-gray-950 rounded-full bg-gray-950 group',
+                            closed === false && 'rotate-180'
+                        )}
                     />
                 </div>
                 <div className="flex flex-col gap-1">
