@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React, { useState } from 'react'
+import React from 'react'
 import { AiOutlinePlaySquare } from 'react-icons/ai'
 import { BsDot } from 'react-icons/bs'
 import { CgMiniPlayer } from 'react-icons/cg'
