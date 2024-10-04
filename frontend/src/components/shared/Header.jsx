@@ -80,7 +80,7 @@ function Header() {
                             >
                                 <button
                                     type="button"
-                                    className="relative rounded-full bg-orange-900 p-1 text-brown-400 hover:text-white ring-8 ring-gray-800 ring-offset-0 ring-offset-gray-800 focus:outline-none focus:ring-4 focus:ring-white focus:ring-offset-4 focus:ring-offset-gray-800"
+                                    className="relative rounded-full bg-orange-700 p-1 text-brown-400 hover:text-white ring-8 ring-gray-800 ring-offset-0 ring-offset-gray-800 focus:outline-none focus:ring-4 focus:ring-white focus:ring-offset-4 focus:ring-offset-gray-800"
                                 >
                                     <span className="absolute -inset-1.5" />
                                     <span className="sr-only">User name</span>
