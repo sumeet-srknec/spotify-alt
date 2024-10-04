@@ -33,7 +33,7 @@ function Header() {
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                                 <div className="flex flex-row gap-2 items-center relative w-auto rounded-full p-2 bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                     {/* <span className='absolute -inset-1.5' /> */}
-                                    <span className="sr-only">View Notifications</span>
+                                    <span className="sr-only">Search you songs</span>
                                     <HiSearch aria-hidden="true" className="h-6 w-6 text-gray-100" />
                                     <input
                                         type="text"
