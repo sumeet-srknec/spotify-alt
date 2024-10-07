@@ -8,6 +8,7 @@ import { IoGridOutline } from 'react-icons/io5'
 import { RiPushpinFill } from 'react-icons/ri'
 import { VscLibrary } from 'react-icons/vsc'
 import SpotButton from './SpotButton'
+import { fetchMusicContent, fetchSortOptions, fetchTypes, fetchViewOptions } from '../service/DataService'
 
 function Navigation() {
     const [navClosed, setNavClosed] = useState(false)
@@ -54,13 +55,7 @@ function Navigation() {
             </div>
             {navClosed === false && (
                 <div className="flex flex-row gap-1 items-center justify-center cursor-pointer">
-                    {[
-                        { key: 'playlists', label: 'Playlists' },
-                        { key: 'podcasts', label: 'Podcasts' },
-                        { key: 'albums', label: 'Albums' },
-                        { key: 'artists', label: 'Artists' },
-                        { key: 'downloaded', label: 'Downloaded' }
-                    ].map((item) => {
+                    {fetchTypes().map((item) => {
                         return (
                             <div
                                 key={item.key}
@@ -98,12 +93,7 @@ function Navigation() {
                         >
                             <div>
                                 <span className="p-2 text-xs text-gray-400 font-bold">Sort by</span>
-                                {[
-                                    { key: 'Recents', label: 'Recents' },
-                                    { key: 'Recently Added', label: 'Recently Added' },
-                                    { key: 'Alphabetical', label: 'Alphabetical' },
-                                    { key: 'Creator', label: 'Creator' }
-                                ].map((item) => {
+                                {fetchSortOptions().map((item) => {
                                     return (
                                         <div
                                             key={item.key}
@@ -122,23 +112,7 @@ function Navigation() {
 
                             <div>
                                 <span className="p-2 text-xs text-gray-400 font-bold">View as</span>
-                                {[
-                                    {
-                                        logo: <FaBars className="h-3 w-3 font-bold" />,
-                                        label: 'Compact',
-                                        key: 'Compact'
-                                    },
-                                    {
-                                        logo: <FaListUl className="h-3 w-3 font-bold" />,
-                                        label: 'List',
-                                        key: 'List'
-                                    },
-                                    {
-                                        logo: <IoGridOutline className="h-3 w-3 font-bold" />,
-                                        label: 'Grid',
-                                        key: 'Grid'
-                                    }
-                                ].map((item) => {
+                                {fetchViewOptions().map((item) => {
                                     return (
                                         <div
                                             key={item.key}
@@ -163,85 +137,7 @@ function Navigation() {
             )}
             {navClosed === false && (
                 <div className="flex flex-col gap-2 h-full overflow-y-auto scrollbar scrollbar-thumb-gray-700 scrollbar-track-inherit ">
-                    {[
-                        {
-                            logo: <HiBars2 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'Liked Songs',
-                            count: 117,
-                            pinned: true,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'G.O.A.T',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'My Universe',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Albums']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'Decatholon Podcasts',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Podcasts']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'BWood Folks',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'Mega Hits',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'BWood Folks',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'Mega Hits',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'BWood Folks',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'Mega Hits',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        },
-                        {
-                            logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
-                            title: 'BWood Folks',
-                            count: 20,
-                            pinned: false,
-                            tags: ['Playlist']
-                        }
-                    ].map((item) => {
+                    {fetchMusicContent().map((item) => {
                         return (
                             <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
                                 {item.logo}
