@@ -1,14 +1,13 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import classNames from 'classnames'
 import React, { useState } from 'react'
-import { FaBars, FaListUl, FaPlay } from 'react-icons/fa6'
+import { FaListUl, FaPlay } from 'react-icons/fa6'
 import { HiCheck, HiSearch } from 'react-icons/hi'
-import { HiArrowRight, HiBars2, HiMiniBars3, HiPlus } from 'react-icons/hi2'
-import { IoGridOutline } from 'react-icons/io5'
+import { HiArrowRight, HiPlus } from 'react-icons/hi2'
 import { RiPushpinFill } from 'react-icons/ri'
 import { VscLibrary } from 'react-icons/vsc'
-import SpotButton from './SpotButton'
 import { fetchMusicContent, fetchSortOptions, fetchTypes, fetchViewOptions } from '../service/DataService'
+import SpotButton from './SpotButton'
 
 function Navigation() {
     const [navClosed, setNavClosed] = useState(false)
