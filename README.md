@@ -12,3 +12,6 @@ Inspiration is Spotify for Windows (64 bit) - 1.2.47.364.gf06e5cee
 
 ### Navigation Panel - V1
 ![Base layout](docs/images/Navigation-layout-v1.PNG "Navigation Panel")
+
+### Navigation Panel - Filter content by tags
+![Base layout](docs/images/Filter-Content-By-Tags.PNG "Navigation Panel")

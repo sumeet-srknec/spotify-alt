@@ -60,28 +60,28 @@ export const fetchMusicContent = () => {
             title: 'Liked Songs',
             count: 117,
             pinned: true,
-            tags: ['Playlist']
+            tags: ['playlists']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
             title: 'G.O.A.T',
             count: 20,
             pinned: false,
-            tags: ['Playlist']
+            tags: ['playlists']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
             title: 'My Universe',
             count: 20,
             pinned: false,
-            tags: ['Albums']
+            tags: ['albums']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
             title: 'Decatholon Podcasts',
             count: 20,
             pinned: false,
-            tags: ['Podcasts']
+            tags: ['podcasts']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
@@ -95,7 +95,7 @@ export const fetchMusicContent = () => {
             title: 'Mega Hits',
             count: 20,
             pinned: false,
-            tags: ['Playlist']
+            tags: ['podcasts']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
@@ -109,7 +109,7 @@ export const fetchMusicContent = () => {
             title: 'Mega Hits',
             count: 20,
             pinned: false,
-            tags: ['Playlist']
+            tags: ['albums']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
@@ -123,14 +123,14 @@ export const fetchMusicContent = () => {
             title: 'Mega Hits',
             count: 20,
             pinned: false,
-            tags: ['Playlist']
+            tags: ['albums']
         },
         {
             logo: <HiMiniBars3 className="h-12 w-12 border rounded cursor-pointer text-orange-400" />,
             title: 'BWood Folks',
             count: 20,
             pinned: false,
-            tags: ['Playlist']
+            tags: ['podcasts']
         }
     ]
 }
