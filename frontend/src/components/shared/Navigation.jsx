@@ -1,9 +1,9 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import classNames from 'classnames'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaListUl, FaPlay } from 'react-icons/fa6'
 import { HiCheck, HiSearch } from 'react-icons/hi'
-import { HiArrowRight, HiPlus } from 'react-icons/hi2'
+import { HiArrowRight, HiPlus, HiXMark } from 'react-icons/hi2'
 import { RiPushpinFill } from 'react-icons/ri'
 import { VscLibrary } from 'react-icons/vsc'
 import { fetchMusicContent, fetchSortOptions, fetchTypes, fetchViewOptions } from '../service/DataService'
@@ -11,14 +11,20 @@ import SpotButton from './SpotButton'
 
 function Navigation() {
     const [navClosed, setNavClosed] = useState(false)
-    const [selectTag, setSelectedTag] = useState('playlists')
+    const [selectTag, setSelectedTag] = useState('')
     const [sortBy, setSortBy] = useState('Recents')
     const [showSearch, setShowSearch] = useState('Recents')
+    const [musicContent, setMusicContent] = useState([])
     const [viewAs, setViewAs] = useState({
         logo: <FaListUl className="h-3 w-3 font-bold" />,
         label: 'List',
         key: 'List'
     })
+
+    useEffect(() => {
+        let content = fetchMusicContent().filter((item) => selectTag === '' || item.tags.indexOf(selectTag) > -1)
+        setMusicContent(content)
+    }, [selectTag])
 
     return (
         <div
@@ -54,13 +60,26 @@ function Navigation() {
             </div>
             {navClosed === false && (
                 <div className="flex flex-row gap-1 items-center justify-center cursor-pointer">
+                    {selectTag && (
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <button
+                                onClick={(e) => setSelectedTag('')}
+                                type="button"
+                                className="relative rounded-full bg-gray-800 p-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            >
+                                <span className="absolute -inset-1.5" />
+                                <span className="sr-only">Home</span>
+                                <HiXMark aria-hidden="true" className="h-4 w-4" />
+                            </button>
+                        </div>
+                    )}
                     {fetchTypes().map((item) => {
                         return (
                             <div
                                 key={item.key}
                                 className={classNames(
-                                    'rounded-full p-1.5 text-xs text-gray-400 hover:text-white hover:bg-gray-700 active:text-green-500 focus:bg-gray-700  bg-gray-800',
-                                    selectTag === item.key && 'text-green-500'
+                                    'font-bold rounded-full p-1.5 text-xs  hover:text-white hover:bg-gray-700 focus:bg-gray-700  bg-gray-800',
+                                    selectTag === item.key && 'bg-white text-black'
                                 )}
                                 onClick={(e) => setSelectedTag(item.key)}
                             >
@@ -136,7 +155,7 @@ function Navigation() {
             )}
             {navClosed === false && (
                 <div className="flex flex-col gap-2 h-full overflow-y-auto scrollbar scrollbar-thumb-gray-700 scrollbar-track-inherit ">
-                    {fetchMusicContent().map((item) => {
+                    {musicContent.map((item) => {
                         return (
                             <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
                                 {item.logo}
