@@ -1,7 +1,8 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import classNames from 'classnames'
-import React, { useState, useEffect } from 'react'
-import { FaListUl, FaPlay } from 'react-icons/fa6'
+import React, { useEffect, useState } from 'react'
+import { FaListUl, FaPlay, FaVolumeHigh } from 'react-icons/fa6'
+import { GoDotFill } from 'react-icons/go'
 import { HiCheck, HiSearch } from 'react-icons/hi'
 import { HiArrowRight, HiPlus, HiXMark } from 'react-icons/hi2'
 import { RiPushpinFill } from 'react-icons/ri'
@@ -15,6 +16,7 @@ function Navigation() {
     const [sortBy, setSortBy] = useState('Recents')
     const [showSearch, setShowSearch] = useState('Recents')
     const [musicContent, setMusicContent] = useState([])
+    const [playing, setPlaying] = useState(false)
     const [viewAs, setViewAs] = useState({
         logo: <FaListUl className="h-3 w-3 font-bold" />,
         label: 'List',
@@ -156,24 +158,12 @@ function Navigation() {
             {navClosed === false && (
                 <div className="flex flex-col gap-2 h-full overflow-y-auto scrollbar scrollbar-thumb-gray-700 scrollbar-track-inherit ">
                     {musicContent.map((item) => {
-                        return (
-                            <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
-                                {item.logo}
-                                <div className="flex flex-col">
-                                    <span className="text-sm font-bold">{item.title}</span>
-                                    <div className="flex flex-row items-center gap-1 text-xs">
-                                        {item.pinned && (
-                                            <span className="text-green-500">
-                                                <RiPushpinFill />
-                                            </span>
-                                        )}
-                                        <span>{item.tags}</span>
-                                        <span>.</span>
-                                        <span>{`${item.count} songs`}</span>
-                                    </div>
-                                </div>
-                                <FaPlay className="hidden group-hover:block absolute translate-y-0.4 translate-x-5" />
-                            </div>
+                        return viewAs.key === 'Grid' ? (
+                            <SpotGridMusicItem item={item} onClick={(e) => setPlaying(true)} />
+                        ) : viewAs.key === 'Compact' ? (
+                            <SpotCompactMusicItem item={item} playing={playing} onClick={(e) => setPlaying(true)} />
+                        ) : (
+                            <SpotListMusicItem item={item} onClick={(e) => setPlaying(true)} />
                         )
                     })}
                 </div>
@@ -183,3 +173,67 @@ function Navigation() {
 }
 
 export default Navigation
+
+export function SpotListMusicItem({ item }) {
+    return (
+        <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
+            {item.logo}
+            <div className="flex flex-col">
+                <span className="text-sm font-bold">{item.title}</span>
+                <div className="flex flex-row items-center gap-1 text-xs">
+                    {item.pinned && (
+                        <span className="text-green-500">
+                            <RiPushpinFill />
+                        </span>
+                    )}
+                    <span>{item.tags}</span>
+                    <span>.</span>
+                    <span>{`${item.count} songs`}</span>
+                </div>
+            </div>
+            <FaPlay className="hidden group-hover:block absolute translate-y-0.4 translate-x-5" />
+        </div>
+    )
+}
+
+export function SpotCompactMusicItem({ item, playing }) {
+    return (
+        <div className="relative flex flex-row items-center justify-between gap-1 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-1 group">
+            <div className="flex flex-row items-center gap-1">
+                {item.pinned && (
+                    <span className="text-green-500">
+                        <RiPushpinFill />
+                    </span>
+                )}
+                <span className={classNames('text-sm font-bold capitalize', playing && 'text-green-500')}>
+                    {item.title}
+                </span>
+                <GoDotFill className="h-2 w-3" />
+                <span className="font-semibold text-sm capitalize">{item.tags}</span>
+            </div>
+            {playing && <FaVolumeHigh className="text-green-500" />}
+        </div>
+    )
+}
+
+export function SpotGridMusicItem({ item }) {
+    return (
+        <div className="relative flex flex-row items-center gap-4 hover:bg-gray-700 hover:text-white text-gray-400 cursor-pointer rounded p-2 group">
+            {item.logo}
+            <div className="flex flex-col">
+                <span className="text-sm font-bold">{item.title}</span>
+                <div className="flex flex-row items-center gap-1 text-xs">
+                    {item.pinned && (
+                        <span className="text-green-500">
+                            <RiPushpinFill />
+                        </span>
+                    )}
+                    <span>{item.tags}</span>
+                    <span>.</span>
+                    <span>{`${item.count} songs`}</span>
+                </div>
+            </div>
+            <FaPlay className="hidden group-hover:block absolute translate-y-0.4 translate-x-5" />
+        </div>
+    )
+}
