@@ -205,7 +205,7 @@ export function SpotCompactMusicItem({ item, playing }) {
                         <RiPushpinFill />
                     </span>
                 )}
-                <span className={classNames('text-sm font-bold capitalize', playing && 'text-green-500')}>
+                <span className={classNames('text-sm font-bold capitalize', playing && 'text-green-600')}>
                     {item.title}
                 </span>
                 <GoDotFill className="h-2 w-3" />
