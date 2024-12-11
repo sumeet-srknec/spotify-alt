@@ -1,6 +1,7 @@
 # Spotify-Alt: Yet another Spotify
 Attempting to clone Spotify UI features.
 Inspiration is Spotify for Windows (64 bit) - 1.2.47.364.gf06e5cee
+
 New updates to be added starting Jan 2025.
 
 ## Screens
